@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Furqan | Interactive Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling portfolio layout was chosen for its intuitive and linear user flow, which is ideal for a resume. The structure begins with a prominent header for immediate contact information, followed by a sticky navigation bar for quick access to key sections: Education, Skills, Certifications, and Projects. This thematic sectioning allows recruiters to easily find the information they need. The key interaction is a dynamic bar chart in the Skills section to visually quantify proficiency, making the information more engaging and digestible than a simple text list. The overall goal is to present a professional and modern interactive profile that is easy to navigate. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Skills list (Python, C, SQL, etc.). Goal: Compare proficiency. Viz/Method: Horizontal Bar Chart. Interaction: Hover tooltips show proficiency levels. Justification: A chart provides a quick, visually engaging comparison of technical abilities, which is more impactful than a static list. Library: Chart.js (Canvas).
+        - Report Info: Education, Certifications, Projects. Goal: Organize and Inform. Viz/Method: Styled HTML cards using Tailwind CSS. Interaction: Subtle hover effects and clickable links. Justification: Cards create clear visual separation and organize content into logical, easy-to-read blocks, improving scannability. Method: HTML/Tailwind.
+        - Report Info: Contact Info & Objective. Goal: Inform. Viz/Method: Well-structured HTML text blocks. Interaction: Clickable links for email/GitHub. Justification: Ensures essential information is immediately accessible and actionable. Method: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-bold text-gray-800">Mohammad Furqan</div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#education" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 pb-1">Education</a>
+                    <a href="#skills" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 pb-1">Skills</a>
+                    <a href="#certifications" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 pb-1">Certifications</a>
+                    <a href="#projects" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 pb-1">Projects</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <section id="intro" class="text-center mb-16">
+            <h1 class="text-5xl font-bold text-gray-900 mb-4">Mohammad Furqan</h1>
+            <p class="text-lg text-gray-600 mb-6">Nanded, Maharashtra, India</p>
+            <div class="flex justify-center items-center space-x-6">
+                <a href="mailto:md88559349365@gmail.com" class="text-blue-600 hover:underline">md88559349365@gmail.com</a>
+                <span class="text-gray-300">|</span>
+                <a href="https://github.com/MFurqan90" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">GitHub Profile</a>
+            </div>
+        </section>
+
+        <section id="objective" class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-blue-200 pb-2">Objective</h2>
+            <p class="text-gray-700 leading-relaxed">
+                A motivated and dedicated final-year Diploma in Information Technology student with a solid foundation in C programming, Python, and SQL. Possesses strong problem-solving abilities and a genuine passion for developing efficient and scalable software solutions. Eager to secure a challenging entry-level software developer or database assistant role where I can apply my technical skills in a practical setting. I am a quick learner, committed to continuous improvement, and keen to contribute to a collaborative team environment while expanding my knowledge of modern technologies.
+            </p>
+        </section>
+
+        <section id="education" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Education</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
+                <h3 class="text-xl font-bold text-gray-900">Diploma in Information Technology</h3>
+                <p class="text-md text-blue-700 font-semibold mb-2">Maharashtra State Board of Technical Education (MSBTE)</p>
+                <p class="text-sm text-gray-500 mb-4">Expected Graduation: 2026</p>
+                <div class="border-t border-gray-200 pt-4">
+                    <p class="text-gray-700 mb-2"><span class="font-semibold">Aggregate Score (Second Year):</span> 70%</p>
+                    <p class="text-gray-700"><span class="font-semibold">Relevant Coursework:</span> Data Structures, Object-Oriented Programming with C++, Database Management Systems, Software Engineering, Web Development Fundamentals, Computer Networks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Technical Skills</h2>
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                <p class="text-center text-gray-600 mb-6">This chart provides a visual representation of my current proficiency in various technologies. Hover over the bars to see my self-assessed skill level. I am actively learning and improving in all these areas.</p>
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Certifications</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900">Certified Programmer in C</h3>
+                    <p class="text-md text-blue-700 font-semibold mb-2">Maharashtra Knowledge Corporation Limited (MKCL)</p>
+                    <p class="text-gray-700">Achieved a score of 71%, demonstrating proficiency in fundamental programming concepts and logic.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900">Certificate in SQL</h3>
+                    <p class="text-md text-blue-700 font-semibold mb-2">Maharashtra Knowledge Corporation Limited (MKCL)</p>
+                    <p class="text-gray-700">Currently pursuing, focusing on database querying, manipulation, and design principles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Projects</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md transition-shadow duration-300 hover:shadow-xl">
+                 <div class="flex justify-between items-start">
+                    <h3 class="text-xl font-bold text-gray-900">Student Record Management System</h3>
+                    <a href="https://github.com/MFurqan90" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline">View on GitHub &rarr;</a>
+                </div>
+                <p class="text-gray-700 mt-4 leading-relaxed">
+                    Developed a console-based application in C to manage student records, including adding, deleting, modifying, and searching for student information. Utilized file handling techniques for persistent data storage, ensuring that records are saved and can be retrieved across sessions. Implemented core data structures to efficiently organize and access the student data. This project showcases strong C programming fundamentals and logical thinking.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-6">
+        <p>&copy; 2025 Mohammad Furqan. Interactive resume created with modern web technologies.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const skillsData = {
+                labels: ['C Programming', 'Python', 'SQL', 'Data Structures', 'OOP Principles', 'HTML & CSS'],
+                proficiency: [80, 70, 75, 85, 70, 60] 
+            };
+
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: skillsData.labels,
+                    datasets: [{
+                        label: 'Proficiency Level',
+                        data: skillsData.proficiency,
+                        backgroundColor: [
+                            'rgba(50, 160, 234, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: '#e0e0e0'
+                            },
+                            ticks: {
+                                color: '#333'
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#333',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += context.parsed.x + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
